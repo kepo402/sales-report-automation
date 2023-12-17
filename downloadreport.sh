@@ -9,4 +9,18 @@ wget -O "$reporturl" "$reportfilename"
 
 #Check for successful downloads
 if [[ $? -eq 0]]; then
-echo "Report downloaded successfully"
+  echo "Report downloaded successfully"
+
+# Move report to designated folder
+  report_folder="/path/to/reports/$(date +%Y)"
+  mkdir -p "$report_folder"
+  mv "$report_filename" "$report_folder/"
+
+  echo "Report moved to $report_folder/"
+else
+  echo "Error downloading report: $?"
+fi
+
+# Optionally add cleanup logic for older reports
+
+exit 0
